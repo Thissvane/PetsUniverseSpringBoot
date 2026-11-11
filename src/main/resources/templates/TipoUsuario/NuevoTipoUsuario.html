@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Tipo de usuario</title>
+</head>
+<body>
+    <h1>Nuevo Tipo de usuario</h1>
+    <form th:action="@{/TipoUsuario}" th:object="${tipoUsuario}" method="post"></form>
+        <input type='hidden' th:field="" name='id' value='' />
+</body>
+</html>

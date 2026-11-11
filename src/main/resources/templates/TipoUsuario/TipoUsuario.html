@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tipos Usuarios</title>
+</head>
+<body>
+    <h1>Listados de tipos Usuarios</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID tipo de usuario</th>
+        </tr>
+        <tr>
+            <th>Descripcion Tipo de usuario</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tipo : ${TipoUsuario}">
+            <td th:text="${tipo.idTipoUsuario}"></td>
+            <td th:text="${tipo.nombreTipo}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

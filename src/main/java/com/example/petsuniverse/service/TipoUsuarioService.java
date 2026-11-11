@@ -21,4 +21,8 @@ public class TipoUsuarioService {
     public TipoUsuario guardar(TipoUsuario usuario){
         return repository.save(usuario);
     }
+
+    public TipoUsuario insertar(TipoUsuario usuario){
+        return repository.save(usuario);
+    }
 }
