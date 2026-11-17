@@ -1,20 +1,31 @@
 package com.example.petsuniverse.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
+/**
+ * Entidad que mapea la tabla {@code especie}.
+ */
 @Entity
 @Table(name = "especie")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter
+@Setter
 public class Especie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_especie")
+    private Integer idEspecie;
 
-    @Column(nullable = false, length = 50)
-    private String nombre;
+    @NotBlank(message = "Nombre de la especie: campo obligatorio.")
+    @Size(max = 60, message = "Máximo 60 caracteres.")
+    @Column(name = "nombre_especie", nullable = false, length = 60)
+    private String nombreEspecie;
+
+    @Size(max = 45, message = "Máximo 45 caracteres.")
+    @Column(name = "Descripcion", length = 45)
+    private String descripcion;
+
 }

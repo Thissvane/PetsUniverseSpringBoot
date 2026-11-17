@@ -1,7 +1,10 @@
 package com.example.petsuniverse.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.petsuniverse.entity.TipoUsuario;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Long> {
+/**
+ * Acceso a datos de {@link TipoUsuario}.
+ */
+public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Integer> {
 }

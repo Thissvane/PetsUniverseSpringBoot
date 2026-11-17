@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Nuevo Tipo de usuario</title>
-</head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Tipo de usuario')}"></head>
 <body>
-    <h1>Nuevo Tipo de usuario</h1>
-    <form th:action="@{/TipoUsuario}" th:object="${tipoUsuario}" method="post"></form>
-        <input type='hidden' th:field="" name='id' value='' />
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idTipoUsuario == null} ? 'Nuevo registro: Tipo de usuario' : 'Editar registro: Tipo de usuario'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/tipo_usuario/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idTipoUsuario}">
+      <div class="mb-3">
+        <label class="form-label" for="nombreTipo">Nombre del tipo</label>
+        <input type="text" class="form-control" th:field="*{nombreTipo}" th:errorclass="is-invalid" maxlength="45" required>
+        <div class="invalid-feedback" th:errors="*{nombreTipo}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/tipo_usuario}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
 </body>
 </html>

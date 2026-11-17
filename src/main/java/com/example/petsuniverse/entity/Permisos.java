@@ -1,22 +1,32 @@
 package com.example.petsuniverse.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
+/**
+ * Entidad que mapea la tabla {@code permisos}.
+ */
 @Entity
 @Table(name = "permisos")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter
+@Setter
 public class Permisos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_permisos")
+    private Integer idPermisos;
 
-    @Column(nullable = false, length = 100)
-    private String nombre;
+    @NotBlank(message = "Nombre del permiso: campo obligatorio.")
+    @Size(max = 45, message = "Máximo 45 caracteres.")
+    @Column(name = "nombre_permisos", nullable = false, length = 45)
+    private String nombrePermisos;
 
+    @NotBlank(message = "Descripción: campo obligatorio.")
+    @Size(max = 45, message = "Máximo 45 caracteres.")
+    @Column(name = "descripcion", nullable = false, length = 45)
     private String descripcion;
+
 }
