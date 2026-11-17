@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Especie')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idEspecie == null} ? 'Nuevo registro: Especie' : 'Editar registro: Especie'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/especie/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idEspecie}">
+      <div class="mb-3">
+        <label class="form-label" for="nombreEspecie">Nombre de la especie</label>
+        <input type="text" class="form-control" th:field="*{nombreEspecie}" th:errorclass="is-invalid" maxlength="60" required>
+        <div class="invalid-feedback" th:errors="*{nombreEspecie}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="descripcion">Descripción</label>
+        <input type="text" class="form-control" th:field="*{descripcion}" th:errorclass="is-invalid" maxlength="45">
+        <div class="invalid-feedback" th:errors="*{descripcion}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/especie}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

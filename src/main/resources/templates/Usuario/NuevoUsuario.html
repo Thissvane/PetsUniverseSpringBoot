@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Usuario')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idUsuario == null} ? 'Nuevo registro: Usuario' : 'Editar registro: Usuario'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/usuario/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idUsuario}">
+      <div class="mb-3">
+        <label class="form-label" for="nombre">Nombre</label>
+        <input type="text" class="form-control" th:field="*{nombre}" th:errorclass="is-invalid" maxlength="45" required>
+        <div class="invalid-feedback" th:errors="*{nombre}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="apellido">Apellido</label>
+        <input type="text" class="form-control" th:field="*{apellido}" th:errorclass="is-invalid" maxlength="45" required>
+        <div class="invalid-feedback" th:errors="*{apellido}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="fechaNacimiento">Fecha de nacimiento</label>
+        <input type="date" class="form-control" th:field="*{fechaNacimiento}" th:errorclass="is-invalid" required>
+        <div class="invalid-feedback" th:errors="*{fechaNacimiento}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="numDocumento">Número de documento</label>
+        <input type="text" class="form-control" th:field="*{numDocumento}" th:errorclass="is-invalid" maxlength="20" required>
+        <div class="invalid-feedback" th:errors="*{numDocumento}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="numTelefono">Teléfono</label>
+        <input type="text" class="form-control" th:field="*{numTelefono}" th:errorclass="is-invalid" maxlength="10" required>
+        <div class="invalid-feedback" th:errors="*{numTelefono}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="email">Correo electrónico</label>
+        <input type="email" class="form-control" th:field="*{email}" th:errorclass="is-invalid" maxlength="45" required>
+        <div class="invalid-feedback" th:errors="*{email}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="clave">Clave</label>
+        <input type="password" class="form-control" th:field="*{clave}" th:errorclass="is-invalid" maxlength="255" autocomplete="new-password">
+        <div class="form-text" th:if="${objeto.idUsuario != null}">Déjela vacía para conservar la clave actual.</div>
+        <div class="invalid-feedback" th:errors="*{clave}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="fechaVencimientoClave">Vencimiento de la clave</label>
+        <input type="date" class="form-control" th:field="*{fechaVencimientoClave}" th:errorclass="is-invalid" required>
+        <div class="invalid-feedback" th:errors="*{fechaVencimientoClave}"></div>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input type="checkbox" class="form-check-input" th:field="*{autorizacionDatos}">
+        <label class="form-check-label" th:for="${#ids.prev('autorizacionDatos')}">Autoriza tratamiento de datos</label>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input type="checkbox" class="form-check-input" th:field="*{estado}">
+        <label class="form-check-label" th:for="${#ids.prev('estado')}">Activo</label>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="tipoDocumento.idTipoDocumento">Tipo de documento</label>
+        <select class="form-select" th:field="*{tipoDocumento.idTipoDocumento}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${tiposDocumento}" th:value="${x.idTipoDocumento}" th:text="${x.sigla}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{tipoDocumento.idTipoDocumento}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="tipoUsuario.idTipoUsuario">Tipo de usuario</label>
+        <select class="form-select" th:field="*{tipoUsuario.idTipoUsuario}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${tiposUsuario}" th:value="${x.idTipoUsuario}" th:text="${x.nombreTipo}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{tipoUsuario.idTipoUsuario}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/usuario}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

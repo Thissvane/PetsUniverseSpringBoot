@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Cita')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idCita == null} ? 'Nuevo registro: Cita' : 'Editar registro: Cita'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/cita/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idCita}">
+      <div class="mb-3">
+        <label class="form-label" for="fecha">Fecha</label>
+        <input type="date" class="form-control" th:field="*{fecha}" th:errorclass="is-invalid" required>
+        <div class="invalid-feedback" th:errors="*{fecha}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="hora">Hora</label>
+        <input type="time" class="form-control" th:field="*{hora}" th:errorclass="is-invalid" required>
+        <div class="invalid-feedback" th:errors="*{hora}"></div>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input type="checkbox" class="form-check-input" th:field="*{statusAutorizacion}">
+        <label class="form-check-label" th:for="${#ids.prev('statusAutorizacion')}">Pago autorizado</label>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="observacionesTesoreria">Observaciones de tesorería</label>
+        <input type="text" class="form-control" th:field="*{observacionesTesoreria}" th:errorclass="is-invalid" maxlength="200">
+        <div class="invalid-feedback" th:errors="*{observacionesTesoreria}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="mascota.idMascota">Mascota</label>
+        <select class="form-select" th:field="*{mascota.idMascota}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${mascotas}" th:value="${x.idMascota}" th:text="${x.nombre}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{mascota.idMascota}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="servicio.idServicio">Servicio</label>
+        <select class="form-select" th:field="*{servicio.idServicio}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${servicios}" th:value="${x.idServicio}" th:text="${x.descripcion}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{servicio.idServicio}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="estadoCita.idEstadoCita">Estado</label>
+        <select class="form-select" th:field="*{estadoCita.idEstadoCita}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${estadosCita}" th:value="${x.idEstadoCita}" th:text="${x.nombreEstado}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{estadoCita.idEstadoCita}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="veterinario.idVeterinario">Veterinario</label>
+        <select class="form-select" th:field="*{veterinario.idVeterinario}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${veterinarios}" th:value="${x.idVeterinario}" th:text="${x.usuario.nombre + ' ' + x.usuario.apellido}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{veterinario.idVeterinario}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/cita}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

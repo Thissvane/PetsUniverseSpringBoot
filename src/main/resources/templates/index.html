@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Inicio')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<header class="hero">
+  <div class="container">
+    <h1 class="fw-bold">Pets Universe</h1>
+    <p class="mb-0">Agenda tu cita veterinaria · Panel de administración</p>
+  </div>
+</header>
+
+<main class="container pb-5">
+    <h2 class="h5 mt-4 mb-3">Usuarios y accesos</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/tipo_documento}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-card-text"></i>
+            <div class="mt-2 fw-semibold text-dark">Tipos de documento</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/tipo_usuario}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-person-badge"></i>
+            <div class="mt-2 fw-semibold text-dark">Tipos de usuario</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/usuario}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-people"></i>
+            <div class="mt-2 fw-semibold text-dark">Usuarios</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/permisos}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-shield-lock"></i>
+            <div class="mt-2 fw-semibold text-dark">Permisos</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <h2 class="h5 mt-4 mb-3">Mascotas</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/especie}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-bug"></i>
+            <div class="mt-2 fw-semibold text-dark">Especies</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/raza}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-tags"></i>
+            <div class="mt-2 fw-semibold text-dark">Razas</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/mascota}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-heart"></i>
+            <div class="mt-2 fw-semibold text-dark">Mascotas</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <h2 class="h5 mt-4 mb-3">Veterinaria</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/veterinario}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-clipboard2-pulse"></i>
+            <div class="mt-2 fw-semibold text-dark">Veterinarios</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/disponibilidad}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-calendar-week"></i>
+            <div class="mt-2 fw-semibold text-dark">Disponibilidades</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <h2 class="h5 mt-4 mb-3">Servicios</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/tipo_servicio}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-grid"></i>
+            <div class="mt-2 fw-semibold text-dark">Tipos de servicio</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/servicio}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-bandaid"></i>
+            <div class="mt-2 fw-semibold text-dark">Servicios</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <h2 class="h5 mt-4 mb-3">Citas y notificaciones</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/estado_cita}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-flag"></i>
+            <div class="mt-2 fw-semibold text-dark">Estados de cita</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/cita}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-calendar-check"></i>
+            <div class="mt-2 fw-semibold text-dark">Citas</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/tipo_notificacion}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-bell"></i>
+            <div class="mt-2 fw-semibold text-dark">Tipos de notificación</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a th:href="@{/notificacion}" class="text-decoration-none">
+          <div class="card card-module h-100 text-center p-3">
+            <i class="bi bi-envelope"></i>
+            <div class="mt-2 fw-semibold text-dark">Notificaciones</div>
+          </div>
+        </a>
+      </div>
+    </div>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Servicio')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idServicio == null} ? 'Nuevo registro: Servicio' : 'Editar registro: Servicio'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/servicio/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idServicio}">
+      <div class="mb-3">
+        <label class="form-label" for="descripcion">Descripción</label>
+        <input type="text" class="form-control" th:field="*{descripcion}" th:errorclass="is-invalid" maxlength="45" required>
+        <div class="invalid-feedback" th:errors="*{descripcion}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="precio">Precio (COP)</label>
+        <input type="number" class="form-control" th:field="*{precio}" th:errorclass="is-invalid" step="0.01" min="0" required>
+        <div class="invalid-feedback" th:errors="*{precio}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="duracionEstimada">Duración estimada (min)</label>
+        <input type="number" class="form-control" th:field="*{duracionEstimada}" th:errorclass="is-invalid" min="1" required>
+        <div class="invalid-feedback" th:errors="*{duracionEstimada}"></div>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input type="checkbox" class="form-check-input" th:field="*{estado}">
+        <label class="form-check-label" th:for="${#ids.prev('estado')}">Activo</label>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="tipoServicio.idTipoServicio">Tipo de servicio</label>
+        <select class="form-select" th:field="*{tipoServicio.idTipoServicio}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${tiposServicio}" th:value="${x.idTipoServicio}" th:text="${x.descripcion}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{tipoServicio.idTipoServicio}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/servicio}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

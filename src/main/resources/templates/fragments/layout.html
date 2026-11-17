@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${titulo} + ' | Pets Universe'">Pets Universe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark pets-navbar">
+  <div class="container">
+    <a class="navbar-brand fw-bold" th:href="@{/}">Pets <span class="text-gold">Universe</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+            aria-controls="menuPrincipal" aria-expanded="false" aria-label="Alternar navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menuPrincipal">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios y accesos</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/tipo_documento}">Tipos de documento</a></li>
+            <li><a class="dropdown-item" th:href="@{/tipo_usuario}">Tipos de usuario</a></li>
+            <li><a class="dropdown-item" th:href="@{/usuario}">Usuarios</a></li>
+            <li><a class="dropdown-item" th:href="@{/permisos}">Permisos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mascotas</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/especie}">Especies</a></li>
+            <li><a class="dropdown-item" th:href="@{/raza}">Razas</a></li>
+            <li><a class="dropdown-item" th:href="@{/mascota}">Mascotas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Veterinaria</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/veterinario}">Veterinarios</a></li>
+            <li><a class="dropdown-item" th:href="@{/disponibilidad}">Disponibilidades</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/tipo_servicio}">Tipos de servicio</a></li>
+            <li><a class="dropdown-item" th:href="@{/servicio}">Servicios</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Citas y notificaciones</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/estado_cita}">Estados de cita</a></li>
+            <li><a class="dropdown-item" th:href="@{/cita}">Citas</a></li>
+            <li><a class="dropdown-item" th:href="@{/tipo_notificacion}">Tipos de notificación</a></li>
+            <li><a class="dropdown-item" th:href="@{/notificacion}">Notificaciones</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<th:block th:fragment="scripts">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</th:block>
+</body>
+</html>

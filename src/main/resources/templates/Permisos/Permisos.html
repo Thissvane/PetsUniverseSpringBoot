@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Permisos')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Permisos</h1>
+    <a th:href="@{/permisos/nuevo}" class="btn btn-pets"><i class="bi bi-plus-lg"></i> Nuevo</a>
+  </div>
+
+  <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <div class="table-responsive bg-white rounded shadow-sm">
+    <table class="table table-hover align-middle mb-0">
+      <thead>
+        <tr><th>ID</th><th>Nombre del permiso</th><th>Descripción</th><th class="text-end">Acciones</th></tr>
+      </thead>
+      <tbody>
+        <tr th:each="o : ${lista}">
+          <td th:text="${o.idPermisos}"></td>
+          <td th:text="${o.nombrePermisos}"></td>
+          <td th:text="${o.descripcion}"></td>
+          <td class="text-end">
+            <a th:href="@{/permisos/editar/{id}(id=${o.idPermisos})}" class="btn btn-sm btn-outline-primary">Editar</a>
+            <form th:action="@{/permisos/eliminar/{id}(id=${o.idPermisos})}" method="post" class="d-inline"
+                  onsubmit="return confirm('¿Eliminar este registro?');">
+              <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(lista)}">
+          <td colspan="4" class="text-center text-muted py-4">No hay registros.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

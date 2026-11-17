@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Notificación')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idNotificacion == null} ? 'Nuevo registro: Notificación' : 'Editar registro: Notificación'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/notificacion/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idNotificacion}">
+      <div class="mb-3">
+        <label class="form-label" for="asunto">Asunto</label>
+        <input type="text" class="form-control" th:field="*{asunto}" th:errorclass="is-invalid" maxlength="200" required>
+        <div class="invalid-feedback" th:errors="*{asunto}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="mensaje">Mensaje</label>
+        <input type="text" class="form-control" th:field="*{mensaje}" th:errorclass="is-invalid" maxlength="255" required>
+        <div class="invalid-feedback" th:errors="*{mensaje}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="tipoNotificacion.idTipoNotificacion">Tipo de notificación</label>
+        <select class="form-select" th:field="*{tipoNotificacion.idTipoNotificacion}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${tiposNotificacion}" th:value="${x.idTipoNotificacion}" th:text="${x.nombreTipo}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{tipoNotificacion.idTipoNotificacion}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="cita.idCita">Cita</label>
+        <select class="form-select" th:field="*{cita.idCita}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${citas}" th:value="${x.idCita}" th:text="${'Cita #' + x.idCita + ' - ' + x.fecha}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{cita.idCita}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/notificacion}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

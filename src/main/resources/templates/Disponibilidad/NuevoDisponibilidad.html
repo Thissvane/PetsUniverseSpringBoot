@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Disponibilidad')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idDisponibilidad == null} ? 'Nuevo registro: Disponibilidad' : 'Editar registro: Disponibilidad'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/disponibilidad/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idDisponibilidad}">
+      <div class="mb-3">
+        <label class="form-label" for="diaSemana">Día de la semana (1-7)</label>
+        <input type="number" class="form-control" th:field="*{diaSemana}" th:errorclass="is-invalid" min="1" max="7" required>
+        <div class="invalid-feedback" th:errors="*{diaSemana}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="horaInicio">Hora de inicio</label>
+        <input type="time" class="form-control" th:field="*{horaInicio}" th:errorclass="is-invalid" required>
+        <div class="invalid-feedback" th:errors="*{horaInicio}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="horaFin">Hora de fin</label>
+        <input type="time" class="form-control" th:field="*{horaFin}" th:errorclass="is-invalid" required>
+        <div class="invalid-feedback" th:errors="*{horaFin}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/disponibilidad}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

@@ -1,0 +1,35 @@
+:root {
+  --space-dark: #000b29;
+  --pets-blue: #1adfbe;
+  --universe-gold: #ffd700;
+  --cosmic-gradient: linear-gradient(135deg, #000b29 0%, #0a2a5e 55%, #1adfbe 100%);
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  background-color: #f4f7fb;
+}
+
+.pets-navbar { background: var(--space-dark); }
+.pets-navbar .text-gold { color: var(--universe-gold); }
+
+.hero {
+  background: var(--cosmic-gradient);
+  color: #fff;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.btn-pets {
+  background-color: var(--pets-blue);
+  border-color: var(--pets-blue);
+  color: var(--space-dark);
+  font-weight: 500;
+}
+.btn-pets:hover { background-color: #15c4a7; border-color: #15c4a7; color: var(--space-dark); }
+
+.card-module { transition: transform .15s ease, box-shadow .15s ease; }
+.card-module:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1rem rgba(0, 11, 41, .15); }
+.card-module .bi { font-size: 1.75rem; color: var(--pets-blue); }
+
+.table thead { background: var(--space-dark); color: #fff; }

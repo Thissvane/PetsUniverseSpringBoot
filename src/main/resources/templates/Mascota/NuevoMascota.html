@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Mascota')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container py-4" style="max-width: 720px;">
+  <h1 class="h3 mb-3" th:text="${objeto.idMascota == null} ? 'Nuevo registro: Mascota' : 'Editar registro: Mascota'"></h1>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{/mascota/guardar}" th:object="${objeto}" method="post" class="bg-white p-4 rounded shadow-sm" novalidate>
+    <input type="hidden" th:field="*{idMascota}">
+      <div class="mb-3">
+        <label class="form-label" for="nombre">Nombre</label>
+        <input type="text" class="form-control" th:field="*{nombre}" th:errorclass="is-invalid" maxlength="20" required>
+        <div class="invalid-feedback" th:errors="*{nombre}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="peso">Peso (kg)</label>
+        <input type="number" class="form-control" th:field="*{peso}" th:errorclass="is-invalid" step="0.01" min="0" required>
+        <div class="invalid-feedback" th:errors="*{peso}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="usuario.idUsuario">Propietario</label>
+        <select class="form-select" th:field="*{usuario.idUsuario}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${usuarios}" th:value="${x.idUsuario}" th:text="${x.nombre + ' ' + x.apellido}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{usuario.idUsuario}"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="raza.idRaza">Raza</label>
+        <select class="form-select" th:field="*{raza.idRaza}" th:errorclass="is-invalid" required>
+          <option value="">Seleccione...</option>
+          <option th:each="x : ${razas}" th:value="${x.idRaza}" th:text="${x.nombreRaza}"></option>
+        </select>
+        <div class="invalid-feedback" th:errors="*{raza.idRaza}"></div>
+      </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-pets">Guardar</button>
+      <a th:href="@{/mascota}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>
